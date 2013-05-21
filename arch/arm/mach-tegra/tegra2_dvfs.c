@@ -85,11 +85,11 @@ static int tegra2_dvfs_rel_vdd_cpu_vdd_core(struct dvfs_rail *vdd_cpu,
 	struct dvfs_rail *vdd_core)
 {
 	if (vdd_cpu->new_millivolts > vdd_cpu->millivolts &&
-	    vdd_core->new_millivolts < vdd_cpu->new_millivolts + 120)
-		return vdd_cpu->new_millivolts + 120;
+	    vdd_core->new_millivolts < vdd_cpu->new_millivolts)
+		return vdd_cpu->new_millivolts;
 
-	if (vdd_core->new_millivolts < vdd_cpu->millivolts + 120)
-		return vdd_cpu->millivolts + 120;
+	if (vdd_core->new_millivolts < vdd_cpu->millivolts)
+		return vdd_cpu->millivolts;
 
 	return vdd_core->new_millivolts;
 }
@@ -208,12 +208,12 @@ static struct dvfs dvfs_init[] = {
 	 */
 	CORE_DVFS("host1x",  -1, 1, KHZ, 104500, 133000, 166000, 166000, 166000, 166000, 166000),
 	CORE_DVFS("epp",     -1, 1, KHZ, 133000, 171000, 247000, 300000, 300000, 300000, 300000),
-	CORE_DVFS("2d",      -1, 1, KHZ, 133000, 171000, 247000, 300000, 300000, 300000, 300000),
+	CORE_DVFS("2d",      -1, 1, KHZ, 133000, 171000, 300000, 400000, 400000, 400000, 400000),
 
-	CORE_DVFS("3d",       0, 1, KHZ, 114000, 161500, 247000, 304000, 304000, 333500, 333500),
-	CORE_DVFS("3d",       1, 1, KHZ, 161500, 209000, 285000, 333500, 333500, 361000, 361000),
-	CORE_DVFS("3d",       2, 1, KHZ, 218500, 256500, 323000, 380000, 380000, 400000, 400000),
-	CORE_DVFS("3d",       3, 1, KHZ, 247000, 285000, 351500, 400000, 400000, 400000, 400000),
+	CORE_DVFS("3d",       0, 1, KHZ, 114000, 161500, 300000, 400000, 400000, 400000, 400000),
+	CORE_DVFS("3d",       1, 1, KHZ, 161500, 209000, 300000, 400000, 400000, 400000, 400000),
+	CORE_DVFS("3d",       2, 1, KHZ, 218500, 256500, 300000, 400000, 400000, 400000, 400000),
+	CORE_DVFS("3d",       3, 1, KHZ, 247000, 285000, 300000, 400000, 400000, 400000, 400000),
 
 	CORE_DVFS("mpe",      0, 1, KHZ, 104500, 152000, 228000, 300000, 300000, 300000, 300000),
 	CORE_DVFS("mpe",      1, 1, KHZ, 142500, 190000, 275500, 300000, 300000, 300000, 300000),
