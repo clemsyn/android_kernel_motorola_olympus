@@ -711,7 +711,7 @@ struct regulator_consumer_supply cpcap_vaudio_consumers[] = {
 static struct regulator_init_data cpcap_regulator[CPCAP_NUM_REGULATORS] = {
 	[CPCAP_SW1] = {
 		.constraints = {
-			.min_uV			= 750000,
+			.min_uV			= 700000,
 			.max_uV			= 1475000,
 			.valid_ops_mask		= REGULATOR_CHANGE_STATUS |
                                                   REGULATOR_CHANGE_VOLTAGE,
@@ -1047,11 +1047,11 @@ static void olympus_board_resume(int lp_state, enum resume_stage stg)
 };
 
 static struct tegra_suspend_platform_data olympus_suspend_data = {
-	.cpu_timer 	= 800,
-	.cpu_off_timer	= 600,
+	.cpu_timer 	= 2000,
+	.cpu_off_timer	= 200,
 	.suspend_mode	= TEGRA_SUSPEND_LP0,
-	.core_timer	= 1842,
-	.core_off_timer = 31,
+	.core_timer	= 0x7e7e,
+	.core_off_timer = 0,
 	.corereq_high	= true,
 	.sysclkreq_high	= true,
 	.board_suspend = olympus_board_suspend,
